@@ -9,7 +9,6 @@ import Rice from "@/components/icons/Rice";
 import Salad from "@/components/icons/Salad";
 import Select from "@/components/icons/Select";
 import ProgressBar from "@/components/ProgressBar";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
