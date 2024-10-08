@@ -11,14 +11,11 @@ import Rice from "@/components/icons/Rice";
 import Salad from "@/components/icons/Salad";
 import Select from "@/components/icons/Select";
 import ProgressBar from "@/components/ProgressBar";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Main = () => {
-  const router = useRouter();
-
-  // 선택된 아이템을 관리하는 상태
+  const router = useRouter(); // useRouter 사용
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   // 아이템 클릭 핸들러
@@ -32,6 +29,17 @@ const Main = () => {
 
   const goBack = () => {
     router.back(); // 이전 페이지로 이동
+  };
+
+  // 선택된 아이템에 따라 다른 페이지로 라우팅
+  const handleNextClick = () => {
+    if (selectedItem === 0) {
+      router.push("/food-type/want"); // '먹고싶은걸 고를래' 선택 시 경로
+    } else if (selectedItem === 1) {
+      router.push("/food-type/remove"); // '안땡기는걸 뺄래' 선택 시 경로
+    } else if (selectedItem === 2) {
+      router.push("/food-type"); // '아무거나 먹을래' 선택 시 경로
+    }
   };
 
   return (
@@ -57,20 +65,18 @@ const Main = () => {
             }`}
             onClick={() => handleItemClick(0)}
           >
-            <div>
-              <div className="flex justify-center items-center ">
-                <Select
-                  className="absolute top-3 right-3 w-6 h-6"
-                  fill={`${
-                    selectedItem === 0
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-                <p className="items-center font-bold text-xl">
-                  먹고싶은걸 <span className="text-primary">고를래!</span>
-                </p>
-              </div>
+            <div className="flex justify-center items-center ">
+              <Select
+                className="absolute top-3 right-3 w-6 h-6"
+                fill={`${
+                  selectedItem === 0
+                    ? "var(--color-primary)"
+                    : "var(--color-disabled)"
+                }`}
+              />
+              <p className="items-center font-bold text-xl">
+                먹고싶은걸 <span className="text-primary">고를래!</span>
+              </p>
             </div>
             <div className=" flex justify-center items-center ">
               <div
@@ -89,20 +95,18 @@ const Main = () => {
             }`}
             onClick={() => handleItemClick(1)}
           >
-            <div>
-              <div className="flex justify-center items-center ">
-                <Select
-                  className="absolute top-3 right-3 w-6 h-6"
-                  fill={`${
-                    selectedItem === 1
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-                <p className="items-center font-bold text-xl">
-                  안땡기는걸 <span className="text-primary">뺄래!</span>
-                </p>
-              </div>
+            <div className="flex justify-center items-center ">
+              <Select
+                className="absolute top-3 right-3 w-6 h-6"
+                fill={`${
+                  selectedItem === 1
+                    ? "var(--color-primary)"
+                    : "var(--color-disabled)"
+                }`}
+              />
+              <p className="items-center font-bold text-xl">
+                안땡기는걸 <span className="text-primary">뺄래!</span>
+              </p>
             </div>
             <div className=" flex justify-center items-center ">
               <div
@@ -121,20 +125,18 @@ const Main = () => {
             }`}
             onClick={() => handleItemClick(2)}
           >
-            <div>
-              <div className="flex justify-center items-center ">
-                <Select
-                  className="absolute top-3 right-3 w-6 h-6"
-                  fill={`${
-                    selectedItem === 2
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-                <p className="items-center font-bold text-xl">
-                  <span className="text-primary">아무거나</span> 먹을래!
-                </p>
-              </div>
+            <div className="flex justify-center items-center ">
+              <Select
+                className="absolute top-3 right-3 w-6 h-6"
+                fill={`${
+                  selectedItem === 2
+                    ? "var(--color-primary)"
+                    : "var(--color-disabled)"
+                }`}
+              />
+              <p className="items-center font-bold text-xl">
+                <span className="text-primary">아무거나</span> 먹을래!
+              </p>
             </div>
             <div className="mt-2 flex justify-center items-center overflow-hidden">
               <div
@@ -156,10 +158,9 @@ const Main = () => {
           className={`cursor-pointer mx-auto mt-10 w-80 h-14 flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)] ${
             selectedItem !== null ? "bg-primary" : "bg-disabled"
           }`}
+          onClick={handleNextClick} // 버튼 클릭 시 라우팅 함수 호출
         >
-          <Link href="/food-type">
-            <p>다음</p>
-          </Link>
+          <p>다음</p>
         </div>
       </main>
     </div>

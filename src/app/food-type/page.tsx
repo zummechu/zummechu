@@ -31,7 +31,21 @@ const FoodType = () => {
   const goBack = () => {
     router.back(); // 이전 페이지로 이동
   };
-
+  const handleNextClick = () => {
+    if (selectedItem === 0) {
+      router.push("/food-select"); // 간단한거
+    } else if (selectedItem === 1) {
+      router.push("/food-select/noodle"); // 면 종류
+    } else if (selectedItem === 2) {
+      router.push("/food-select/soup"); // 뜨끈한 국물
+    } else if (selectedItem === 3) {
+      router.push("/food-select/fried"); // 바삭한거
+    } else if (selectedItem === 4) {
+      router.push("/food-select/rice"); // 밥 종류
+    } else if (selectedItem === 5) {
+      router.push("/food-select/american"); // 미국 감성
+    }
+  };
   return (
     <div>
       <header className="relative pt-1 px-5 w-96 h-18 rounded-b-32">
@@ -233,9 +247,14 @@ const FoodType = () => {
               selectedItem !== null ? "bg-primary" : "bg-disabled"
             }`}
           >
-            <Link href="/food-select">
-              <p>다음</p>
-            </Link>
+          <div
+            className={`cursor-pointer mx-auto w-39 h-14 flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)] ${
+              selectedItem !== null ? "bg-primary" : "bg-disabled"
+            }`}
+            onClick={handleNextClick}
+          >
+            <p>다음</p>
+          </div>
           </div>
         </div>
       </main>
