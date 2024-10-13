@@ -1,12 +1,13 @@
 "use client";
 import BI from "@/components/icons/BI";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Home = () => {
+  const router = useRouter(); // useRouter 사용
   // 선택된 아이템을 관리하는 상태
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
@@ -19,9 +20,13 @@ const Home = () => {
     }
   };
 
+  const handleNextClick = () => {
+    router.push("/main");
+  };
+
   return (
     <div>
-      <header className="pt-1 px-7 bg-primary w-96 h-40 rounded-b-32">
+      <header className="pt-1 px-7 bg-primary w-94 h-40 rounded-b-32">
         <div className="flex justify-between text-white text-sm font-bold font-[family-name:var(--font-pretendard)]">
           <div>서울 양천구 중앙로 45길</div>
           <div>버튼</div>
@@ -155,11 +160,12 @@ const Home = () => {
           </div>
         </section>
 
-        <Link href="/main">
-          <div className="mx-auto mt-10 w-80 h-14 bg-primary flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)]">
-            <p>메뉴 고르러 가기</p>
-          </div>
-        </Link>
+        <div
+          className="cursor-pointer mx-auto mt-10 w-80 h-14 bg-primary flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)]"
+          onClick={handleNextClick}
+        >
+          <p>메뉴 고르러 가기</p>
+        </div>
       </main>
     </div>
   );

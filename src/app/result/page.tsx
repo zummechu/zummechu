@@ -1,25 +1,16 @@
 "use client";
 import HeaderLogo from "@/components/icons/HeaderLogo";
 import LeftAngleBracket from "@/components/icons/LeftAngleBracket";
-import Select from "@/components/icons/Select";
+import ResultImage from "@/components/icons/ResultImage";
 import ProgressBar from "@/components/ProgressBar";
-import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Result = () => {
   const router = useRouter();
 
-  // 선택된 아이템을 관리하는 상태
-  const [selectedItem, setSelectedItem] = useState<number | null>(null);
-
-  // 아이템 클릭 핸들러
-  const handleItemClick = (index: number) => {
-    if (selectedItem === index) {
-      setSelectedItem(null); // 같은 아이템 클릭 시 선택 해제
-    } else {
-      setSelectedItem(index); // 다른 아이템 클릭 시 해당 아이템 선택
-    }
+  const handleRedoClick = () => {
+    router.push("/main");
   };
 
   const goBack = () => {
@@ -39,160 +30,28 @@ const Result = () => {
         <ProgressBar progress={100} />
       </header>
       <main className="mx-auto mt-7 px-5">
-        <div className="flex justify-between mb-3 items-end">
-          <p className="font-bold text-xl ">간단한 것 중에 어떤거?</p>
-        </div>
-        <div className="w-84 h-[459px] flex flex-wrap justify-around gap-1 items-center">
-          <div
-            className={`flex justify-between px-5 items-center cursor-pointer w-84 h-16 border rounded-[20px] py-6 relative ${
-              selectedItem === 0 ? "bg-selected" : ""
-            }`}
-            onClick={() => handleItemClick(0)}
-          >
-            <div className="mt-1 flex flex-col justify-center items-center">
-              <p className="items-center font-medium text-lg">
-                토스트/샌드위치
-              </p>
-            </div>
-            <div>
-              <div className="">
-                <Select
-                  className="w-6 h-6"
-                  fill={`${
-                    selectedItem === 0
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-              </div>
-            </div>
+        <section className="flex flex-col justify-cestart items-center w-84 h-86 mt-9 border-[1px] rounded-[1.25rem] border-[#dddddd]">
+          <p className="my-[1.875rem] font-bold text-[1.75rem]">
+            오늘은 <span className="text-primary">국밥</span>이다!
+          </p>
+          <div className="relative">
+            <Image
+              src="/images/soup.webp"
+              width={230}
+              height={200}
+              alt="음식 이미지"
+            ></Image>
+            <ResultImage className="absolute w-20 h-18 bottom-0 right-0" />
           </div>
+        </section>
+        <button className="mx-auto mt-10 flex justify-center items-center w-80 h-14 ">
           <div
-            className={`flex justify-between px-5 items-center cursor-pointer w-84 h-16 border rounded-[20px] py-6 relative ${
-              selectedItem === 1 ? "bg-selected" : ""
-            }`}
-            onClick={() => handleItemClick(1)}
+            className={`cursor-pointer mx-auto w-80 h-14 flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)] bg-primary`}
+            onClick={handleRedoClick}
           >
-            <div className="mt-1 flex flex-col justify-center items-center">
-              <p className="items-center font-medium text-lg">면 종류</p>
-            </div>
-            <div>
-              <div className="flex justify-center items-center ">
-                <Select
-                  className="w-6 h-6"
-                  fill={`${
-                    selectedItem === 1
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-              </div>
-            </div>
+            <p>메뉴 추천 다시 받기</p>
           </div>
-          <div
-            className={`flex justify-between px-5 cursor-pointer w-84 h-16 border rounded-[20px] py-6 relative ${
-              selectedItem === 2 ? "bg-selected" : ""
-            }`}
-            onClick={() => handleItemClick(2)}
-          >
-            <div className="mt-1 flex justify-center items-center">
-              <p className="items-center font-medium text-lg">샐러드(포케)</p>
-            </div>
-            <div>
-              <Select
-                className="w-6 h-6"
-                fill={`${
-                  selectedItem === 2
-                    ? "var(--color-primary)"
-                    : "var(--color-disabled)"
-                }`}
-              />
-            </div>
-          </div>
-          <div
-            className={`flex justify-between items-center px-5 cursor-pointer w-84 h-16 border rounded-[20px] py-6 relative ${
-              selectedItem === 3 ? "bg-selected" : ""
-            }`}
-            onClick={() => handleItemClick(3)}
-          >
-            <div className="mt-1 flex flex-col justify-center items-center">
-              <p className="items-center font-medium text-lg">브리또</p>
-            </div>
-            <div>
-              <div className="flex justify-center items-center">
-                <Select
-                  className="w-6 h-6"
-                  fill={`${
-                    selectedItem === 3
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className={`flex justify-between items-center px-5 cursor-pointer w-84 h-16 border rounded-[20px] py-6 relative ${
-              selectedItem === 4 ? "bg-selected" : ""
-            }`}
-            onClick={() => handleItemClick(4)}
-          >
-            <div className="mt-1 flex flex-col justify-center items-center">
-              <p className="items-center font-medium text-lg">죽</p>
-            </div>
-            <div>
-              <div className="flex justify-center items-center ">
-                <Select
-                  className="w-6 h-6"
-                  fill={`${
-                    selectedItem === 4
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className={`flex justify-between items-center px-5 cursor-pointer w-84 h-16 border rounded-[20px] py-6 relative ${
-              selectedItem === 5 ? "bg-selected" : ""
-            }`}
-            onClick={() => handleItemClick(5)}
-          >
-            <div className="mt-1 flex flex-col justify-center items-center">
-              <p className="items-center font-medium text-lg">미국 감성</p>
-            </div>
-            <div>
-              <div className="flex justify-center items-center ">
-                <Select
-                  className="w-6 h-6"
-                  fill={`${
-                    selectedItem === 5
-                      ? "var(--color-primary)"
-                      : "var(--color-disabled)"
-                  }`}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mx-auto mt-10 flex justify-center items-center w-80 h-14 gap-2 ">
-          <div
-            className={`cursor-pointer flex justify-center border border-[#dddddd] items-center w-39 h-14 rounded-xl font-semibold text-dark3 font-[family-name:var(--font-pretendard)] `}
-            onClick={goBack}
-          >
-            <p className="flex ">이전</p>
-          </div>
-          <div
-            className={`cursor-pointer mx-auto w-39 h-14 flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)] ${
-              selectedItem !== null ? "bg-primary" : "bg-disabled"
-            }`}
-          >
-            <Link href="/result">
-              <p>다음</p>
-            </Link>
-          </div>
-        </div>
+        </button>
       </main>
     </div>
   );
