@@ -38,7 +38,7 @@ const Main = () => {
     } else if (selectedItem === 1) {
       router.push("/food-type/remove"); // '안땡기는걸 뺄래' 선택 시 경로
     } else if (selectedItem === 2) {
-      router.push("/food-type"); // '아무거나 먹을래' 선택 시 경로
+      router.push("/result"); // '아무거나 먹을래' 선택 시 경로
     }
   };
 
@@ -58,9 +58,9 @@ const Main = () => {
         <div>
           <p className="font-bold text-xl mb-3">어떤 방식으로 골라볼까?</p>
         </div>
-        <div className="w-84 h-[459px] flex flex-col justify-around gap-3 items-center">
+        <div className="w-84 h-[28.6875rem] flex flex-col justify-around gap-3 items-center">
           <div
-            className={`cursor-pointer w-84 h-36 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-84 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 0 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(0)}
@@ -90,7 +90,7 @@ const Main = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-84 h-36 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-84 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 1 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(1)}
@@ -120,7 +120,7 @@ const Main = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-84 h-36 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-84 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 2 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(2)}

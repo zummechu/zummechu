@@ -9,11 +9,13 @@ import Rice from "@/components/icons/Rice";
 import Salad from "@/components/icons/Salad";
 import Select from "@/components/icons/Select";
 import ProgressBar from "@/components/ProgressBar";
+import useGoBack from "@/hooks/UseGoBack";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const FoodType = () => {
+const Preferred = () => {
   const router = useRouter();
+  const goBack = useGoBack();
 
   // 선택된 아이템을 관리하는 상태
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
@@ -27,12 +29,9 @@ const FoodType = () => {
     }
   };
 
-  const goBack = () => {
-    router.back(); // 이전 페이지로 이동
-  };
   const handleNextClick = () => {
     if (selectedItem === 0) {
-      router.push("/food-select"); // 간단한거
+      router.push("/food-select/simple"); // 간단한거
     } else if (selectedItem === 1) {
       router.push("/food-select/noodle"); // 면 종류
     } else if (selectedItem === 2) {
@@ -62,9 +61,9 @@ const FoodType = () => {
           <p className="font-bold text-xl ">오늘 이게 땡겨</p>
           <p className="font-normal text-xs text-dark3 ">보기 하나만 선택</p>
         </div>
-        <div className="w-84 h-[459px] flex flex-wrap justify-around gap-1 items-center">
+        <div className="w-84 h-[28.6875rem] flex flex-wrap justify-around gap-1 items-center">
           <div
-            className={`cursor-pointer w-40 h-37 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-40 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 0 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(0)}
@@ -92,7 +91,7 @@ const FoodType = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-40 h-37 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-40 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 1 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(1)}
@@ -122,7 +121,7 @@ const FoodType = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-40 h-37 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-40 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 2 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(2)}
@@ -150,7 +149,7 @@ const FoodType = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-40 h-37 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-40 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 3 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(3)}
@@ -178,7 +177,7 @@ const FoodType = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-40 h-37 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-40 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 4 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(4)}
@@ -206,7 +205,7 @@ const FoodType = () => {
             </div>
           </div>
           <div
-            className={`cursor-pointer w-40 h-37 border rounded-[20px] py-6 relative ${
+            className={`cursor-pointer w-40 h-36 border rounded-[1.25rem] py-6 relative ${
               selectedItem === 5 ? "bg-selected" : ""
             }`}
             onClick={() => handleItemClick(5)}
@@ -246,14 +245,14 @@ const FoodType = () => {
               selectedItem !== null ? "bg-primary" : "bg-disabled"
             }`}
           >
-          <div
-            className={`cursor-pointer mx-auto w-39 h-14 flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)] ${
-              selectedItem !== null ? "bg-primary" : "bg-disabled"
-            }`}
-            onClick={handleNextClick}
-          >
-            <p>다음</p>
-          </div>
+            <div
+              className={`cursor-pointer mx-auto w-39 h-14 flex justify-center items-center rounded-xl text-white font-semibold font-[family-name:var(--font-pretendard)] ${
+                selectedItem !== null ? "bg-primary" : "bg-disabled"
+              }`}
+              onClick={handleNextClick}
+            >
+              <p>다음</p>
+            </div>
           </div>
         </div>
       </main>
@@ -261,4 +260,4 @@ const FoodType = () => {
   );
 };
 
-export default FoodType;
+export default Preferred;
